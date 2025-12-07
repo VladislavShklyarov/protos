@@ -1,1 +1,31 @@
-syntax = "proto3"
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package spot_instrument.v1;
+
+option go_package = "github.com/VladislavShklyarov/protos/gen/spot_instrument;spotinstrument";
+
+message ViewMarketsRequest {
+  repeated string user_roles = 1; // Метод ViewMarkets принимает user_roles...
+}
+message ViewMarketsResponse {
+  repeated Market markets = 1; // ... и возвращает список доступных рынков
+}
+// Единственное, немного не понятно, почему у нас передается СПИСОК ролей.
+// Разве у одного пользователя их может быть несколько? Какие вообще могут быть роли на спотовых рынках? Я просто не очень шарю за эту тему :)
+
+
+message Market { // "структура Рынок"
+  string id = 1;
+  string name = 2;
+  bool enabled = 3;
+  google.protobuf.Timestamp deleted_at = 4;
+}
+
+service SpotInstrumentService {
+  rpc ViewMarkets(ViewMarketsRequest) returns (ViewMarketsResponse);
+}
+
+// Пока что самый базовый функционал с одним rpc который проверяет доступность рынка в зависимости от роли пользователя.
+// Может потом добавим что-нибудь еще, например функционал работы с рынками или что-то в таком духе.
