@@ -1,6 +1,5 @@
 module github.com/VladislavShklyarov/protos
 
-
 go 1.25.0
 
 require (
