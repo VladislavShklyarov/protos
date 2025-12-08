@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package order_service.v1;
 
-option go_package = "github.com/VladislavShklyarov/protos/gen/order_service;orderservice";
+option go_package = "github.com/VladislavShklyarov/protos/gen/order;orderservice";
 
 message OrderStatusRequest { // Метод GetOrderStatus принимает order_id и user_id...
   int64 user_id = 1;
