@@ -4,13 +4,10 @@ package order_service.v1;
 
 option go_package = "github.com/VladislavShklyarov/protos/gen/order;orderservice";
 
-message OrderID {
-  string orderId = 1;
-}
 
 message OrderStatusRequest { // Метод GetOrderStatus принимает order_id и user_id...
   int64 user_id = 1;
-  OrderID order_id = 2;
+  string order_id = 2;
 }
 message OrderStatusResponse { // ... и возвращает статус заказа
   OrderStatus order_status = 1;
@@ -24,7 +21,7 @@ message CreateOrderRequest { // Метод CreateOrder	принимает user_i
   int64 quantity = 5;
 }
 message CreateOrderResponse { // ... и возвращает order_id и статус
-  OrderID order_id = 1;
+  string order_id = 1;
   OrderStatus order_status = 2;
 }
 
