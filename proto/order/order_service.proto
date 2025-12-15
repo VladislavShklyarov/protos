@@ -5,8 +5,8 @@ import "protoc-gen-validate/validate/validate.proto";
 
 option go_package = "github.com/VladislavShklyarov/protos/gen/order;orderservice";
 
-
-message OrderStatusRequest { // Метод GetOrderStatus принимает order_id и user_id...
+ // Добавили валидацию
+message OrderStatusRequest { // Метод GetOrderStatus принимает order_id и user_id
   int64 user_id = 1 [(validate.rules).int64.gt = 0];
   string order_id = 2 [(validate.rules).string.min_len = 1];
 }
