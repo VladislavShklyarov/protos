@@ -1,27 +1,28 @@
 syntax = "proto3";
 
 package order_service.v1;
+import "protoc-gen-validate/validate/validate.proto";
 
 option go_package = "github.com/VladislavShklyarov/protos/gen/order;orderservice";
 
 
 message OrderStatusRequest { // Метод GetOrderStatus принимает order_id и user_id...
-  int64 user_id = 1;
-  string order_id = 2;
+  int64 user_id = 1 [(validate.rules).int64.gt = 0];
+  string order_id = 2 [(validate.rules).string.min_len = 1];
 }
 message OrderStatusResponse { // ... и возвращает статус заказа
   OrderStatus order_status = 1;
 }
 
 message CreateOrderRequest { // Метод CreateOrder	принимает user_id, market_id, order_type, price и quantity
-  int64 user_id = 1;
-  string market_id = 2; // строковый, потому что в SpotInstrument market_id тоже строковый
-  OrderType order_type = 3;
-  int64 price = 4;
-  int64 quantity = 5;
+  int64 user_id = 1 [(validate.rules).int64.gt = 0];
+  string market_id = 2 [(validate.rules).string.min_len = 1];
+  OrderType order_type = 3  [(validate.rules).enum.defined_only = true];
+  int64 price = 4 [(validate.rules).int64.gt = 0] ;
+  int64 quantity = 5 [(validate.rules).int64.gt = 0];
 }
 message CreateOrderResponse { // ... и возвращает order_id и статус
-  string order_id = 1;
+  string order_id = 1 [(validate.rules).string.min_len = 1];
   OrderStatus order_status = 2;
 }
 

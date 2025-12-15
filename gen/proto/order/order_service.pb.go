@@ -7,6 +7,7 @@
 package orderservice
 
 import (
+	_ "github.com/envoyproxy/protoc-gen-validate/validate"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -221,7 +222,7 @@ func (x *OrderStatusResponse) GetOrderStatus() OrderStatus {
 type CreateOrderRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	MarketId      string                 `protobuf:"bytes,2,opt,name=market_id,json=marketId,proto3" json:"market_id,omitempty"` // строковый, потому что в SpotInstrument market_id тоже строковый
+	MarketId      string                 `protobuf:"bytes,2,opt,name=market_id,json=marketId,proto3" json:"market_id,omitempty"`
 	OrderType     OrderType              `protobuf:"varint,3,opt,name=order_type,json=orderType,proto3,enum=order_service.v1.OrderType" json:"order_type,omitempty"`
 	Price         int64                  `protobuf:"varint,4,opt,name=price,proto3" json:"price,omitempty"`
 	Quantity      int64                  `protobuf:"varint,5,opt,name=quantity,proto3" json:"quantity,omitempty"`
@@ -350,21 +351,21 @@ var File_proto_order_order_service_proto protoreflect.FileDescriptor
 
 const file_proto_order_order_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1fproto/order/order_service.proto\x12\x10order_service.v1\"H\n" +
-	"\x12OrderStatusRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x19\n" +
-	"\border_id\x18\x02 \x01(\tR\aorderId\"W\n" +
+	"\x1fproto/order/order_service.proto\x12\x10order_service.v1\x1a+protoc-gen-validate/validate/validate.proto\"Z\n" +
+	"\x12OrderStatusRequest\x12 \n" +
+	"\auser_id\x18\x01 \x01(\x03B\a\xfaB\x04\"\x02 \x00R\x06userId\x12\"\n" +
+	"\border_id\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\aorderId\"W\n" +
 	"\x13OrderStatusResponse\x12@\n" +
-	"\forder_status\x18\x01 \x01(\x0e2\x1d.order_service.v1.OrderStatusR\vorderStatus\"\xb8\x01\n" +
-	"\x12CreateOrderRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x03R\x06userId\x12\x1b\n" +
-	"\tmarket_id\x18\x02 \x01(\tR\bmarketId\x12:\n" +
+	"\forder_status\x18\x01 \x01(\x0e2\x1d.order_service.v1.OrderStatusR\vorderStatus\"\xe6\x01\n" +
+	"\x12CreateOrderRequest\x12 \n" +
+	"\auser_id\x18\x01 \x01(\x03B\a\xfaB\x04\"\x02 \x00R\x06userId\x12$\n" +
+	"\tmarket_id\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\bmarketId\x12D\n" +
 	"\n" +
-	"order_type\x18\x03 \x01(\x0e2\x1b.order_service.v1.OrderTypeR\torderType\x12\x14\n" +
-	"\x05price\x18\x04 \x01(\x03R\x05price\x12\x1a\n" +
-	"\bquantity\x18\x05 \x01(\x03R\bquantity\"r\n" +
-	"\x13CreateOrderResponse\x12\x19\n" +
-	"\border_id\x18\x01 \x01(\tR\aorderId\x12@\n" +
+	"order_type\x18\x03 \x01(\x0e2\x1b.order_service.v1.OrderTypeB\b\xfaB\x05\x82\x01\x02\x10\x01R\torderType\x12\x1d\n" +
+	"\x05price\x18\x04 \x01(\x03B\a\xfaB\x04\"\x02 \x00R\x05price\x12#\n" +
+	"\bquantity\x18\x05 \x01(\x03B\a\xfaB\x04\"\x02 \x00R\bquantity\"{\n" +
+	"\x13CreateOrderResponse\x12\"\n" +
+	"\border_id\x18\x01 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\aorderId\x12@\n" +
 	"\forder_status\x18\x02 \x01(\x0e2\x1d.order_service.v1.OrderStatusR\vorderStatus*P\n" +
 	"\tOrderType\x12\x1a\n" +
 	"\x16ORDER_TYPE_UNSPECIFIED\x10\x00\x12\x12\n" +
