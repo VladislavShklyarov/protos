@@ -123,6 +123,7 @@ func (OrderStatus) EnumDescriptor() ([]byte, []int) {
 	return file_proto_order_order_service_proto_rawDescGZIP(), []int{1}
 }
 
+// Добавили валидацию
 type OrderStatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
