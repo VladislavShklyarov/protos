@@ -35,14 +35,11 @@ service OrderService {
   rpc GetOrderStatus(OrderStatusRequest) returns (OrderStatusResponse) {
     option (google.api.http) = {
       get: "/orders/{order_id}"
-      additional_bindings {
-        get: "/orders/{order_id}"
-      }
     };
   }
   rpc CreateOrder(CreateOrderRequest) returns (CreateOrderResponse) {
     option (google.api.http) = {
-      post: "/orders}"
+      post: "/orders"
       body: "*"
     };
   }

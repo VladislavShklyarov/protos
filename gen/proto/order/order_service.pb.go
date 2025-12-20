@@ -377,10 +377,10 @@ const file_proto_order_order_service_proto_rawDesc = "" +
 	"\x18ORDER_STATUS_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14ORDER_STATUS_CREATED\x10\x01\x12\x19\n" +
 	"\x15ORDER_STATUS_EXECUTED\x10\x02\x12\x19\n" +
-	"\x15ORDER_STATUS_REJECTED\x10\x032\x91\x02\n" +
-	"\fOrderService\x12\x8f\x01\n" +
-	"\x0eGetOrderStatus\x12$.order_service.v1.OrderStatusRequest\x1a%.order_service.v1.OrderStatusResponse\"0\x82\xd3\xe4\x93\x02*Z\x14\x12\x12/orders/{order_id}\x12\x12/orders/{order_id}\x12o\n" +
-	"\vCreateOrder\x12$.order_service.v1.CreateOrderRequest\x1a%.order_service.v1.CreateOrderResponse\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/orders}B=Z;github.com/VladislavShklyarov/protos/gen/order;orderserviceb\x06proto3"
+	"\x15ORDER_STATUS_REJECTED\x10\x032\xf9\x01\n" +
+	"\fOrderService\x12y\n" +
+	"\x0eGetOrderStatus\x12$.order_service.v1.OrderStatusRequest\x1a%.order_service.v1.OrderStatusResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/orders/{order_id}\x12n\n" +
+	"\vCreateOrder\x12$.order_service.v1.CreateOrderRequest\x1a%.order_service.v1.CreateOrderResponse\"\x12\x82\xd3\xe4\x93\x02\f:\x01*\"\a/ordersB=Z;github.com/VladislavShklyarov/protos/gen/order;orderserviceb\x06proto3"
 
 var (
 	file_proto_order_order_service_proto_rawDescOnce sync.Once
