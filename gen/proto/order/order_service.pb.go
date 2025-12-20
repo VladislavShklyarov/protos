@@ -8,8 +8,10 @@ package orderservice
 
 import (
 	_ "github.com/envoyproxy/protoc-gen-validate/validate"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	_ "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -123,7 +125,6 @@ func (OrderStatus) EnumDescriptor() ([]byte, []int) {
 	return file_proto_order_order_service_proto_rawDescGZIP(), []int{1}
 }
 
-// Добавили валидацию
 type OrderStatusRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        int64                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -352,7 +353,7 @@ var File_proto_order_order_service_proto protoreflect.FileDescriptor
 
 const file_proto_order_order_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1fproto/order/order_service.proto\x12\x10order_service.v1\x1a+protoc-gen-validate/validate/validate.proto\"Z\n" +
+	"\x1fproto/order/order_service.proto\x12\x10order_service.v1\x1a+protoc-gen-validate/validate/validate.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"Z\n" +
 	"\x12OrderStatusRequest\x12 \n" +
 	"\auser_id\x18\x01 \x01(\x03B\a\xfaB\x04\"\x02 \x00R\x06userId\x12\"\n" +
 	"\border_id\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\aorderId\"W\n" +
@@ -376,10 +377,10 @@ const file_proto_order_order_service_proto_rawDesc = "" +
 	"\x18ORDER_STATUS_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14ORDER_STATUS_CREATED\x10\x01\x12\x19\n" +
 	"\x15ORDER_STATUS_EXECUTED\x10\x02\x12\x19\n" +
-	"\x15ORDER_STATUS_REJECTED\x10\x032\xc9\x01\n" +
-	"\fOrderService\x12]\n" +
-	"\x0eGetOrderStatus\x12$.order_service.v1.OrderStatusRequest\x1a%.order_service.v1.OrderStatusResponse\x12Z\n" +
-	"\vCreateOrder\x12$.order_service.v1.CreateOrderRequest\x1a%.order_service.v1.CreateOrderResponseB=Z;github.com/VladislavShklyarov/protos/gen/order;orderserviceb\x06proto3"
+	"\x15ORDER_STATUS_REJECTED\x10\x032\x91\x02\n" +
+	"\fOrderService\x12\x8f\x01\n" +
+	"\x0eGetOrderStatus\x12$.order_service.v1.OrderStatusRequest\x1a%.order_service.v1.OrderStatusResponse\"0\x82\xd3\xe4\x93\x02*Z\x14\x12\x12/orders/{order_id}\x12\x12/orders/{order_id}\x12o\n" +
+	"\vCreateOrder\x12$.order_service.v1.CreateOrderRequest\x1a%.order_service.v1.CreateOrderResponse\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/orders}B=Z;github.com/VladislavShklyarov/protos/gen/order;orderserviceb\x06proto3"
 
 var (
 	file_proto_order_order_service_proto_rawDescOnce sync.Once
