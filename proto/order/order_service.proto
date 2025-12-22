@@ -6,6 +6,7 @@ import "protoc-gen-validate/validate/validate.proto";
 import "google/protobuf/empty.proto";
 import "google/api/annotations.proto";
 import "google/api/http.proto";
+import "google/api/field_behavior.proto";
 
 option go_package = "github.com/VladislavShklyarov/protos/gen/order;orderservice";
 
@@ -21,7 +22,13 @@ message OrderStatusResponse { // ... и возвращает статус зак
 message CreateOrderRequest { // Метод CreateOrder	принимает user_id, market_id, order_type, price и quantity
   int64 user_id = 1 [(validate.rules).int64.gt = 0];
   string market_id = 2 [(validate.rules).string.min_len = 1];
-  OrderType order_type = 3  [(validate.rules).enum.defined_only = true];
+  OrderType order_type = 3  [
+    (validate.rules).enum = {
+      defined_only: true,
+      not_in: [0]
+    },
+    (google.api.field_behavior) = REQUIRED
+];
   int64 price = 4 [(validate.rules).int64.gt = 0] ;
   int64 quantity = 5 [(validate.rules).int64.gt = 0];
 }

@@ -307,6 +307,17 @@ func (m *CreateOrderRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
+	if _, ok := _CreateOrderRequest_OrderType_NotInLookup[m.GetOrderType()]; ok {
+		err := CreateOrderRequestValidationError{
+			field:  "OrderType",
+			reason: "value must not be in list [ORDER_TYPE_UNSPECIFIED]",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
 	if _, ok := OrderType_name[int32(m.GetOrderType())]; !ok {
 		err := CreateOrderRequestValidationError{
 			field:  "OrderType",
@@ -419,6 +430,10 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = CreateOrderRequestValidationError{}
+
+var _CreateOrderRequest_OrderType_NotInLookup = map[OrderType]struct{}{
+	0: {},
+}
 
 // Validate checks the field values on CreateOrderResponse with the rules
 // defined in the proto definition for this message. If any rules are

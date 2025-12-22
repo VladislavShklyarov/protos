@@ -353,17 +353,17 @@ var File_proto_order_order_service_proto protoreflect.FileDescriptor
 
 const file_proto_order_order_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1fproto/order/order_service.proto\x12\x10order_service.v1\x1a+protoc-gen-validate/validate/validate.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"Z\n" +
+	"\x1fproto/order/order_service.proto\x12\x10order_service.v1\x1a+protoc-gen-validate/validate/validate.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\x1fgoogle/api/field_behavior.proto\"Z\n" +
 	"\x12OrderStatusRequest\x12 \n" +
 	"\auser_id\x18\x01 \x01(\x03B\a\xfaB\x04\"\x02 \x00R\x06userId\x12\"\n" +
 	"\border_id\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\aorderId\"W\n" +
 	"\x13OrderStatusResponse\x12@\n" +
-	"\forder_status\x18\x01 \x01(\x0e2\x1d.order_service.v1.OrderStatusR\vorderStatus\"\xe6\x01\n" +
+	"\forder_status\x18\x01 \x01(\x0e2\x1d.order_service.v1.OrderStatusR\vorderStatus\"\xeb\x01\n" +
 	"\x12CreateOrderRequest\x12 \n" +
 	"\auser_id\x18\x01 \x01(\x03B\a\xfaB\x04\"\x02 \x00R\x06userId\x12$\n" +
-	"\tmarket_id\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\bmarketId\x12D\n" +
+	"\tmarket_id\x18\x02 \x01(\tB\a\xfaB\x04r\x02\x10\x01R\bmarketId\x12I\n" +
 	"\n" +
-	"order_type\x18\x03 \x01(\x0e2\x1b.order_service.v1.OrderTypeB\b\xfaB\x05\x82\x01\x02\x10\x01R\torderType\x12\x1d\n" +
+	"order_type\x18\x03 \x01(\x0e2\x1b.order_service.v1.OrderTypeB\r\xe0A\x02\xfaB\a\x82\x01\x04\x10\x01 \x00R\torderType\x12\x1d\n" +
 	"\x05price\x18\x04 \x01(\x03B\a\xfaB\x04\"\x02 \x00R\x05price\x12#\n" +
 	"\bquantity\x18\x05 \x01(\x03B\a\xfaB\x04\"\x02 \x00R\bquantity\"{\n" +
 	"\x13CreateOrderResponse\x12\"\n" +
