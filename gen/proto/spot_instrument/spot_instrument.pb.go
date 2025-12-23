@@ -7,6 +7,8 @@
 package spotinstrument
 
 import (
+	_ "github.com/envoyproxy/protoc-gen-validate/validate"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -22,9 +24,64 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type UseRoles int32
+
+const (
+	UseRoles_UNDEFINED            UseRoles = 0
+	UseRoles_RETAIL_TRADER        UseRoles = 1
+	UseRoles_INSTITUTIONAL_TRADER UseRoles = 2
+	UseRoles_MARKET_MAKER         UseRoles = 3
+	UseRoles_READ_ONLY            UseRoles = 4
+)
+
+// Enum value maps for UseRoles.
+var (
+	UseRoles_name = map[int32]string{
+		0: "UNDEFINED",
+		1: "RETAIL_TRADER",
+		2: "INSTITUTIONAL_TRADER",
+		3: "MARKET_MAKER",
+		4: "READ_ONLY",
+	}
+	UseRoles_value = map[string]int32{
+		"UNDEFINED":            0,
+		"RETAIL_TRADER":        1,
+		"INSTITUTIONAL_TRADER": 2,
+		"MARKET_MAKER":         3,
+		"READ_ONLY":            4,
+	}
+)
+
+func (x UseRoles) Enum() *UseRoles {
+	p := new(UseRoles)
+	*p = x
+	return p
+}
+
+func (x UseRoles) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (UseRoles) Descriptor() protoreflect.EnumDescriptor {
+	return file_proto_spot_instrument_spot_instrument_proto_enumTypes[0].Descriptor()
+}
+
+func (UseRoles) Type() protoreflect.EnumType {
+	return &file_proto_spot_instrument_spot_instrument_proto_enumTypes[0]
+}
+
+func (x UseRoles) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use UseRoles.Descriptor instead.
+func (UseRoles) EnumDescriptor() ([]byte, []int) {
+	return file_proto_spot_instrument_spot_instrument_proto_rawDescGZIP(), []int{0}
+}
+
 type ViewMarketsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserRoles     []string               `protobuf:"bytes,1,rep,name=user_roles,json=userRoles,proto3" json:"user_roles,omitempty"` // Метод ViewMarkets принимает user_roles...
+	UserRoles     []UseRoles             `protobuf:"varint,1,rep,packed,name=user_roles,json=userRoles,proto3,enum=spot_instrument.v1.UseRoles" json:"user_roles,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -59,7 +116,7 @@ func (*ViewMarketsRequest) Descriptor() ([]byte, []int) {
 	return file_proto_spot_instrument_spot_instrument_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ViewMarketsRequest) GetUserRoles() []string {
+func (x *ViewMarketsRequest) GetUserRoles() []UseRoles {
 	if x != nil {
 		return x.UserRoles
 	}
@@ -182,10 +239,10 @@ var File_proto_spot_instrument_spot_instrument_proto protoreflect.FileDescriptor
 
 const file_proto_spot_instrument_spot_instrument_proto_rawDesc = "" +
 	"\n" +
-	"+proto/spot_instrument/spot_instrument.proto\x12\x12spot_instrument.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"3\n" +
-	"\x12ViewMarketsRequest\x12\x1d\n" +
+	"+proto/spot_instrument/spot_instrument.proto\x12\x12spot_instrument.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a+protoc-gen-validate/validate/validate.proto\x1a\x15google/api/http.proto\x1a\x1cgoogle/api/annotations.proto\"d\n" +
+	"\x12ViewMarketsRequest\x12N\n" +
 	"\n" +
-	"user_roles\x18\x01 \x03(\tR\tuserRoles\"K\n" +
+	"user_roles\x18\x01 \x03(\x0e2\x1c.spot_instrument.v1.UseRolesB\x11\xfaB\x0e\x92\x01\v\b\x01\"\a\x82\x01\x04\x10\x01 \x00R\tuserRoles\"K\n" +
 	"\x13ViewMarketsResponse\x124\n" +
 	"\amarkets\x18\x01 \x03(\v2\x1a.spot_instrument.v1.MarketR\amarkets\"\x81\x01\n" +
 	"\x06Market\x12\x0e\n" +
@@ -193,9 +250,16 @@ const file_proto_spot_instrument_spot_instrument_proto_rawDesc = "" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
 	"\aenabled\x18\x03 \x01(\bR\aenabled\x129\n" +
 	"\n" +
-	"deleted_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt2w\n" +
-	"\x15SpotInstrumentService\x12^\n" +
-	"\vViewMarkets\x12&.spot_instrument.v1.ViewMarketsRequest\x1a'.spot_instrument.v1.ViewMarketsResponseBIZGgithub.com/VladislavShklyarov/protos/gen/spot_instrument;spotinstrumentb\x06proto3"
+	"deleted_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tdeletedAt*g\n" +
+	"\bUseRoles\x12\r\n" +
+	"\tUNDEFINED\x10\x00\x12\x11\n" +
+	"\rRETAIL_TRADER\x10\x01\x12\x18\n" +
+	"\x14INSTITUTIONAL_TRADER\x10\x02\x12\x10\n" +
+	"\fMARKET_MAKER\x10\x03\x12\r\n" +
+	"\tREAD_ONLY\x10\x042\x89\x01\n" +
+	"\x15SpotInstrumentService\x12p\n" +
+	"\vViewMarkets\x12&.spot_instrument.v1.ViewMarketsRequest\x1a'.spot_instrument.v1.ViewMarketsResponse\"\x10\x82\xd3\xe4\x93\x02\n" +
+	"\x12\b/marketsBIZGgithub.com/VladislavShklyarov/protos/gen/spot_instrument;spotinstrumentb\x06proto3"
 
 var (
 	file_proto_spot_instrument_spot_instrument_proto_rawDescOnce sync.Once
@@ -209,23 +273,26 @@ func file_proto_spot_instrument_spot_instrument_proto_rawDescGZIP() []byte {
 	return file_proto_spot_instrument_spot_instrument_proto_rawDescData
 }
 
+var file_proto_spot_instrument_spot_instrument_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_proto_spot_instrument_spot_instrument_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_proto_spot_instrument_spot_instrument_proto_goTypes = []any{
-	(*ViewMarketsRequest)(nil),    // 0: spot_instrument.v1.ViewMarketsRequest
-	(*ViewMarketsResponse)(nil),   // 1: spot_instrument.v1.ViewMarketsResponse
-	(*Market)(nil),                // 2: spot_instrument.v1.Market
-	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
+	(UseRoles)(0),                 // 0: spot_instrument.v1.UseRoles
+	(*ViewMarketsRequest)(nil),    // 1: spot_instrument.v1.ViewMarketsRequest
+	(*ViewMarketsResponse)(nil),   // 2: spot_instrument.v1.ViewMarketsResponse
+	(*Market)(nil),                // 3: spot_instrument.v1.Market
+	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
 }
 var file_proto_spot_instrument_spot_instrument_proto_depIdxs = []int32{
-	2, // 0: spot_instrument.v1.ViewMarketsResponse.markets:type_name -> spot_instrument.v1.Market
-	3, // 1: spot_instrument.v1.Market.deleted_at:type_name -> google.protobuf.Timestamp
-	0, // 2: spot_instrument.v1.SpotInstrumentService.ViewMarkets:input_type -> spot_instrument.v1.ViewMarketsRequest
-	1, // 3: spot_instrument.v1.SpotInstrumentService.ViewMarkets:output_type -> spot_instrument.v1.ViewMarketsResponse
-	3, // [3:4] is the sub-list for method output_type
-	2, // [2:3] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	0, // 0: spot_instrument.v1.ViewMarketsRequest.user_roles:type_name -> spot_instrument.v1.UseRoles
+	3, // 1: spot_instrument.v1.ViewMarketsResponse.markets:type_name -> spot_instrument.v1.Market
+	4, // 2: spot_instrument.v1.Market.deleted_at:type_name -> google.protobuf.Timestamp
+	1, // 3: spot_instrument.v1.SpotInstrumentService.ViewMarkets:input_type -> spot_instrument.v1.ViewMarketsRequest
+	2, // 4: spot_instrument.v1.SpotInstrumentService.ViewMarkets:output_type -> spot_instrument.v1.ViewMarketsResponse
+	4, // [4:5] is the sub-list for method output_type
+	3, // [3:4] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_proto_spot_instrument_spot_instrument_proto_init() }
@@ -238,13 +305,14 @@ func file_proto_spot_instrument_spot_instrument_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_spot_instrument_spot_instrument_proto_rawDesc), len(file_proto_spot_instrument_spot_instrument_proto_rawDesc)),
-			NumEnums:      0,
+			NumEnums:      1,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_proto_spot_instrument_spot_instrument_proto_goTypes,
 		DependencyIndexes: file_proto_spot_instrument_spot_instrument_proto_depIdxs,
+		EnumInfos:         file_proto_spot_instrument_spot_instrument_proto_enumTypes,
 		MessageInfos:      file_proto_spot_instrument_spot_instrument_proto_msgTypes,
 	}.Build()
 	File_proto_spot_instrument_spot_instrument_proto = out.File

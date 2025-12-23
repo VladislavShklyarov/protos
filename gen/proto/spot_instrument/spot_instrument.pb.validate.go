@@ -57,6 +57,44 @@ func (m *ViewMarketsRequest) validate(all bool) error {
 
 	var errors []error
 
+	if len(m.GetUserRoles()) < 1 {
+		err := ViewMarketsRequestValidationError{
+			field:  "UserRoles",
+			reason: "value must contain at least 1 item(s)",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	for idx, item := range m.GetUserRoles() {
+		_, _ = idx, item
+
+		if _, ok := _ViewMarketsRequest_UserRoles_NotInLookup[item]; ok {
+			err := ViewMarketsRequestValidationError{
+				field:  fmt.Sprintf("UserRoles[%v]", idx),
+				reason: "value must not be in list [0]",
+			}
+			if !all {
+				return err
+			}
+			errors = append(errors, err)
+		}
+
+		if _, ok := UseRoles_name[int32(item)]; !ok {
+			err := ViewMarketsRequestValidationError{
+				field:  fmt.Sprintf("UserRoles[%v]", idx),
+				reason: "value must be one of the defined enum values",
+			}
+			if !all {
+				return err
+			}
+			errors = append(errors, err)
+		}
+
+	}
+
 	if len(errors) > 0 {
 		return ViewMarketsRequestMultiError(errors)
 	}
@@ -136,6 +174,10 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = ViewMarketsRequestValidationError{}
+
+var _ViewMarketsRequest_UserRoles_NotInLookup = map[UseRoles]struct{}{
+	0: {},
+}
 
 // Validate checks the field values on ViewMarketsResponse with the rules
 // defined in the proto definition for this message. If any rules are
